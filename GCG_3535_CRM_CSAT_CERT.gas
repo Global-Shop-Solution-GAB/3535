@@ -1,0 +1,525 @@
+Program.Sub.ScreenSU.Start
+gui.F_CSAT..create
+gui.F_CSAT..caption("Customer Satisfaction")
+gui.F_CSAT..size(8790,7395)
+gui.F_CSAT..minx(0)
+gui.F_CSAT..miny(0)
+gui.F_CSAT..position(0,0)
+gui.F_CSAT..event(unload,F_csat_unload)
+gui.F_CSAT..alwaysontop(False)
+gui.F_CSAT..fontname("Arial")
+gui.F_CSAT..fontsize(8)
+gui.F_CSAT..forecolor(0)
+gui.F_CSAT..fontstyle(,,,,)
+gui.F_CSAT..BackColor(-2147483633)
+gui.F_CSAT..controlbox(True)
+gui.F_CSAT..maxbutton(False)
+gui.F_CSAT..minbutton(False)
+gui.F_CSAT..mousepointer(0)
+gui.F_CSAT..moveable(True)
+gui.F_CSAT..sizeable(False)
+gui.F_CSAT..ShowInTaskBar(True)
+gui.F_CSAT..titlebar(True)
+gui.F_CSAT.lblCust.create(label,"Customer",True,810,255,1,100,50,True,0,Arial,8,-2147483633,0)
+gui.F_CSAT.lblCust.defaultvalue("")
+gui.F_CSAT.lblCust.controlgroup(0)
+gui.F_CSAT.lblOrd.create(label,"Sales Order Number",True,1575,255,1,1600,50,True,0,Arial,8,-2147483633,0)
+gui.F_CSAT.lblOrd.defaultvalue("")
+gui.F_CSAT.lblOrd.controlgroup(0)
+gui.F_CSAT.lblRate.create(label,"Customer Rating (1-10)",True,1770,255,1,3535,50,True,0,Arial,8,-2147483633,0)
+gui.F_CSAT.lblRate.defaultvalue("")
+gui.F_CSAT.lblRate.controlgroup(0)
+gui.F_CSAT.lblCat.create(label,"Category",True,1935,255,1,5380,50,True,0,Arial,8,-2147483633,0)
+gui.F_CSAT.lblCat.defaultvalue("")
+gui.F_CSAT.lblCat.controlgroup(0)
+gui.F_CSAT.lblCom.create(label,"Comments",True,810,255,1,100,605,True,0,Arial,8,-2147483633,0)
+gui.F_CSAT.lblCom.defaultvalue("")
+gui.F_CSAT.lblCom.controlgroup(0)
+gui.F_CSAT.cboCat.create(dropdownlist)
+gui.F_CSAT.cboCat.visible(True)
+gui.F_CSAT.cboCat.size(2790,330)
+gui.F_CSAT.cboCat.zorder(0)
+gui.F_CSAT.cboCat.position(5350,240)
+gui.F_CSAT.cboCat.enabled(True)
+gui.F_CSAT.cboCat.fontname("Arial")
+gui.F_CSAT.cboCat.fontsize(8)
+gui.F_CSAT.cboCat.defaultvalue("")
+gui.F_CSAT.cboCat.controlgroup(0)
+gui.F_CSAT.txtSO.create(textbox,"",True,1485,300,0,1590,240,True,0,Arial,8,-2147483643,1)
+gui.F_CSAT.txtSO.event(lostfocus,txtso_lostfocus)
+gui.F_CSAT.txtSO.defaultvalue("")
+gui.F_CSAT.txtSO.controlgroup(0)
+gui.F_CSAT.mltxtComments.create(textboxm)
+gui.F_CSAT.mltxtComments.text("")
+gui.F_CSAT.mltxtComments.visible(True)
+gui.F_CSAT.mltxtComments.size(8340,2040)
+gui.F_CSAT.mltxtComments.zorder(0)
+gui.F_CSAT.mltxtComments.position(100,845)
+gui.F_CSAT.mltxtComments.enabled(True)
+gui.F_CSAT.mltxtComments.alignment(0)
+gui.F_CSAT.mltxtComments.fontname("Arial")
+gui.F_CSAT.mltxtComments.fontsize(8)
+gui.F_CSAT.mltxtComments.BackColor(-2147483643)
+gui.F_CSAT.mltxtComments.defaultvalue("")
+gui.F_CSAT.mltxtComments.controlgroup(0)
+gui.F_CSAT.cmdSave.create(button)
+gui.F_CSAT.cmdSave.caption("&Save")
+gui.F_CSAT.cmdSave.visible(True)
+gui.F_CSAT.cmdSave.size(855,375)
+gui.F_CSAT.cmdSave.zorder(0)
+gui.F_CSAT.cmdSave.position(70,2955)
+gui.F_CSAT.cmdSave.enabled(True)
+gui.F_CSAT.cmdSave.fontname("Arial")
+gui.F_CSAT.cmdSave.fontsize(8)
+gui.F_CSAT.cmdSave.event(click,Save)
+gui.F_CSAT.cmdSave.defaultvalue("")
+gui.F_CSAT.cmdSave.controlgroup(0)
+gui.F_CSAT.lvwSat.create(listview)
+gui.F_CSAT.lvwSat.view(3)
+gui.F_CSAT.lvwSat.addlistviewcolumn("CSID",0,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("Date/Time",1000,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("GS User",1215,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("Sales Order",1100,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("Category",1500,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("Rating",700,0)
+gui.F_CSAT.lvwSat.addlistviewcolumn("Comment (Truncated)",2500,0)
+gui.F_CSAT.lvwSat.visible(True)
+gui.F_CSAT.lvwSat.size(8385,3240)
+gui.F_CSAT.lvwSat.zorder(0)
+gui.F_CSAT.lvwSat.position(90,3425)
+gui.F_CSAT.lvwSat.enabled(True)
+gui.F_CSAT.lvwSat.fontname("Arial")
+gui.F_CSAT.lvwSat.fontsize(8)
+gui.F_CSAT.lvwSat.event(click,Click_LVW)
+gui.F_CSAT.lvwSat.event(dblclick,Click_LVW)
+gui.F_CSAT.lvwSat.event(itemclick,Click_LVW)
+gui.F_CSAT.cboRate.create(dropdownlist)
+gui.F_CSAT.cboRate.visible(True)
+gui.F_CSAT.cboRate.size(1395,330)
+gui.F_CSAT.cboRate.zorder(0)
+gui.F_CSAT.cboRate.position(3585,240)
+gui.F_CSAT.cboRate.enabled(True)
+gui.F_CSAT.cboRate.fontname("Arial")
+gui.F_CSAT.cboRate.fontsize(8)
+gui.F_CSAT.cboRate.defaultvalue("")
+gui.F_CSAT.cboRate.controlgroup(0)
+gui.F_CSAT.txtCust.create(textbox,"",True,1170,315,0,100,240,False,0,Arial,8,-2147483643,1)
+gui.F_CSAT.txtCust.defaultvalue("")
+gui.F_CSAT.txtCust.controlgroup(0)
+gui.F_CSAT.txtCSID.create(textbox,"",False,1185,345,0,7100,2925,False,0,Arial,8,-2147483643,1)
+gui.F_CSAT.txtCSID.defaultvalue("")
+gui.F_CSAT.txtCSID.controlgroup(0)
+gui.F_CSAT.cmdClear.create(button)
+gui.F_CSAT.cmdClear.caption("Clear")
+gui.F_CSAT.cmdClear.visible(True)
+gui.F_CSAT.cmdClear.size(855,375)
+gui.F_CSAT.cmdClear.zorder(0)
+gui.F_CSAT.cmdClear.position(975,2955)
+gui.F_CSAT.cmdClear.enabled(True)
+gui.F_CSAT.cmdClear.fontname("Arial")
+gui.F_CSAT.cmdClear.fontsize(8)
+gui.F_CSAT.cmdClear.event(click,Clear)
+gui.F_CSAT.cmdClear.defaultvalue("")
+gui.F_CSAT.cmdClear.controlgroup(0)
+gui.F_CSAT.cmdSO.create(button)
+gui.F_CSAT.cmdSO.caption("^")
+gui.F_CSAT.cmdSO.visible(True)
+gui.F_CSAT.cmdSO.size(360,375)
+gui.F_CSAT.cmdSO.zorder(0)
+gui.F_CSAT.cmdSO.position(3140,200)
+gui.F_CSAT.cmdSO.enabled(True)
+gui.F_CSAT.cmdSO.fontname("Arial")
+gui.F_CSAT.cmdSO.fontsize(8)
+gui.F_CSAT.cmdSO.event(click,Browser)
+gui.F_CSAT.cmdSO.defaultvalue("")
+gui.F_CSAT.cmdSO.controlgroup(0)
+gui.F_CSAT.txtSO.tabstop(True)
+gui.F_CSAT.txtSO.tabindex(1)
+gui.F_CSAT.cmdSO.tabstop(True)
+gui.F_CSAT.cmdSO.tabindex(2)
+gui.F_CSAT.cboRate.tabstop(True)
+gui.F_CSAT.cboRate.tabindex(4)
+gui.F_CSAT.cboCat.tabstop(True)
+gui.F_CSAT.cboCat.tabindex(5)
+gui.F_CSAT.mltxtComments.tabstop(True)
+gui.F_CSAT.mltxtComments.tabindex(6)
+gui.F_CSAT.cmdSave.tabstop(True)
+gui.F_CSAT.cmdSave.tabindex(7)
+gui.F_CSAT.cmdClear.tabstop(True)
+gui.F_CSAT.cmdClear.tabindex(8)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.sCustNo.Declare(String)
+Variable.Global.sSO.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+'written by enm
+'GS Certified by BCC on 9/9/2015
+'using hook 42918 from CRM, Script 1
+'using hook 42900 from CRM. Entry
+'using hook 11910 from SO, Script 1
+'using hook 11560 from SO, Populate
+
+V.Local.sCust.Declare(String)
+
+F.Intrinsic.Control.If(V.Caller.Hook,=,42918)
+	V.Global.sCustNo.Set(V.Passed.DATA-CRM-CompID)
+F.Intrinsic.Control.ElseIf(V.Caller.Hook,=,42900)
+	V.Passed.CRM-cmdGAB-0.Set("Cust. Sat.")
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.ElseIf(V.Caller.Hook,=,11910)
+	V.Global.sCustNo.Set(V.Passed.000006)
+	V.Global.sSO.Set(V.Passed.000003)
+
+	'If no Order Number selected then exit program, Blank Order number passes 0 by default
+	F.Intrinsic.Control.If(V.Global.sSO.Trim,=,"0")
+		F.Intrinsic.UI.Msgbox("You must select an Order No. Exiting Program","No Order No.")
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+	
+	Gui.F_CSAT.txtSO.Text(V.Global.sSO)
+	Gui.F_CSAT.txtSO.Enabled(False)
+	Gui.F_CSAT.cmdSO.Enabled(False)
+F.Intrinsic.Control.ElseIf(V.Caller.Hook,=,11560)
+	V.Passed.000201.Set("Cust. Sat.")
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+Gui.F_CSAT.cboCat.AddItem("")
+Gui.F_CSAT.cboCat.AddItem("General")
+Gui.F_CSAT.cboCat.AddItem("Product")
+Gui.F_CSAT.cboCat.AddItem("Installation")
+Gui.F_CSAT.cboCat.AddItem("Repair")
+
+Gui.F_CSAT.cboRate.AddItem("")
+Gui.F_CSAT.cboRate.AddItem("1")
+Gui.F_CSAT.cboRate.AddItem("2")
+Gui.F_CSAT.cboRate.AddItem("3")
+Gui.F_CSAT.cboRate.AddItem("4")
+Gui.F_CSAT.cboRate.AddItem("5")
+Gui.F_CSAT.cboRate.AddItem("6")
+Gui.F_CSAT.cboRate.AddItem("7")
+Gui.F_CSAT.cboRate.AddItem("8")
+Gui.F_CSAT.cboRate.AddItem("9")
+Gui.F_CSAT.cboRate.AddItem("10")
+
+Gui.F_CSAT.txtCust.Text(V.Global.sCustNo)
+F.Intrinsic.Control.CallSub(Fill_lvw)
+
+Gui.F_CSAT..Show
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.F_CSAT_Unload.Start
+F.Intrinsic.Control.SetErrorHandler("F_CSAT_Unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!Con.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("F_CSAT_Unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.F_CSAT_Unload.End
+
+Program.Sub.Save.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSQL.Declare(String)
+V.Local.sName.Declare(String)
+
+F.Intrinsic.Control.If(V.Screen.F_CSAT!cboRate.Text,<>,"","AND",V.Screen.F_CSAT!cboCat.Text,<>,"")
+	F.Intrinsic.Control.If(V.Screen.F_CSAT!txtCSID.Text,=,"")
+		V.Local.sSQL.Set("Select * from GCG_CRM_CSAT_CERT")
+		F.ODBC.Connection!Con.OpenRecordsetRW("rstS",V.Local.sSQL)
+		F.ODBC.Con!rstS.AddNew
+		F.ODBC.Con!rstS.Set!Customer(V.Screen.F_CSAT!txtCust.Text)
+		F.ODBC.Con!rstS.Set!Sales_Order(V.Screen.F_CSAT!txtSO.Text)
+		F.ODBC.Con!rstS.Set!Rating(V.Screen.F_CSAT!cboRate.Text)
+		F.ODBC.Con!rstS.Set!Category(V.Screen.F_CSAT!cboCat.Text)
+		F.ODBC.Con!rstS.Set!CComments(V.Screen.F_CSAT!mltxtComments.Text)
+		F.ODBC.Con!rstS.Set!RatingDt(V.Ambient.Now)
+		F.ODBC.Con!rstS.Set!GS_User(V.Caller.User)
+		F.ODBC.Con!rstS.Update
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Build("Select * from GCG_CRM_CSAT_CERT where CSID='{0}'",V.Screen.F_CSAT!txtCSID.Text,V.Local.sSQL)
+		F.ODBC.Connection!Con.OpenRecordsetRW("rstS",V.Local.sSQL)
+		F.Intrinsic.Control.If(V.ODBC.Con!rstS.EOF,=,True)
+			F.ODBC.Con!rstS.AddNew
+			F.ODBC.Con!rstS.Set!Customer(V.Screen.F_CSAT!txtCust.Text)
+			F.ODBC.Con!rstS.Set!Sales_Order(V.Screen.F_CSAT!txtSO.Text)
+			F.ODBC.Con!rstS.Set!Rating(V.Screen.F_CSAT!cboRate.Text)
+			F.ODBC.Con!rstS.Set!Category(V.Screen.F_CSAT!cboCat.Text)
+			F.ODBC.Con!rstS.Set!CComments(V.Screen.F_CSAT!mltxtComments.Text)
+			F.ODBC.Con!rstS.Set!RatingDt(V.Ambient.Now)
+			F.ODBC.Con!rstS.Set!GS_User(V.Caller.User)
+			F.ODBC.Con!rstS.Update
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.Con!rstS.Close
+	F.Intrinsic.Control.CallSub(Clear)
+	F.Intrinsic.Control.CallSub(Fill_lvw)
+F.Intrinsic.Control.Else
+	F.Intrinsic.UI.Msgbox("You must select a rating, and a category to save the review.","Need Rate And Category")
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save.End
+
+Program.Sub.Fill_LVW.Start
+F.Intrinsic.Control.SetErrorHandler("Fill_LVW_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sQuery.Declare(String)
+V.Local.sCust.Declare(String)
+V.Local.sCom.Declare(String)
+
+Gui.F_CSAT.lvwSat.MultiSelect(true)
+Gui.F_CSAT.lvwSat.Checkboxes(true)
+Gui.F_CSAT.lvwSat.ClearItems
+
+Gui.f_CSAT.lvwSat.Enabled(false)
+
+F.Intrinsic.Control.If(V.Global.sSO,=,"")
+	F.Intrinsic.String.Build("SELECT * FROM GCG_CRM_CSAT_CERT WHERE CUSTOMER ='{0}' ORDER BY Sales_Order",V.Global.sCustNo.Trim,V.Local.sQuery)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Build("SELECT * FROM GCG_CRM_CSAT_CERT WHERE CUSTOMER ='{0}' AND Sales_Order = '{1}' ORDER BY Sales_Order",V.Global.sCustNo.Trim,V.Global.sSO,V.Local.sQuery)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!Con.OpenLocalRecordsetRO("RSTSA",V.Local.sQuery)
+
+F.Intrinsic.Control.dountil(V.odbc.con!rstSA.EOF,=,True)
+	Gui.f_csat.lvwsat.Addlistitem(V.odbc.con!rstSA.FieldValtrim!CSID,V.odbc.con!rstSA.FieldValtrim!CSID)
+	Gui.f_csat.lvwsat.SetListItemSubItemText(V.odbc.con!rstSA.FieldValtrim!CSID,1,V.odbc.con!rstSA.FieldValtrim!RatingDt)
+	Gui.f_csat.lvwsat.SetListItemSubItemText(V.odbc.con!rstSA.FieldValtrim!CSID,2,V.odbc.con!rstSA.FieldValtrim!GS_User)
+	Gui.F_CSAT.lvwSat.SetListItemSubItemText(V.ODBC.Con!rstSA.FieldVal!CSID,3,V.ODBC.Con!rstSA.FieldVal!Sales_Order)
+	Gui.F_CSAT.lvwSat.SetListItemSubItemText(V.ODBC.Con!rstSA.FieldVal!CSID,4,V.ODBC.Con!rstSA.FieldVal!Category)
+	Gui.F_CSAT.lvwSat.SetListItemSubItemText(V.ODBC.Con!rstSA.FieldVal!CSID,5,V.ODBC.Con!rstSA.FieldVal!Rating)
+	F.Intrinsic.String.Left(V.ODBC.Con!rstSA.FieldVal!CComments,40,V.Local.sCom)
+	Gui.F_CSAT.lvwSat.SetListItemSubItemText(V.ODBC.Con!rstSA.FieldVal!CSID,6,V.Local.sCom)
+F.odbc.con!rstsa.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.con!rstSA.Close
+Gui.F_CSAT.lvwSat.Enabled(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Fill_LVW_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Fill_LVW.End
+
+Program.Sub.Browser.Start
+F.Intrinsic.Control.SetErrorHandler("Browser_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.local.sRet.Declare(String)
+V.local.sTemp.Declare(String)
+V.local.sTitles.Declare(String)
+V.local.iWidths.Declare(Long)
+V.Local.sDSN.Declare(String)
+V.Local.sSQL.Declare(String)
+
+F.intrinsic.string.split("Order No*!*Suffix","*!*",Variable.local.sTitles)
+F.intrinsic.string.split("1000*!*800","*!*",Variable.local.iWidths)
+F.Intrinsic.String.Build("Select Order_No,Order_Suffix from V_Order_Header where CUSTOMER ='{0}'",V.Global.sCustNo,V.Local.sSQL)
+F.intrinsic.ui.browser("Select An Order","con",V.Local.sSQL,Variable.local.sTitles,Variable.local.iWidths,Variable.local.sRet)
+
+F.intrinsic.control.if(Variable.local.sRet,<>,"***CANCEL***")
+	F.intrinsic.string.split(Variable.local.sRet,"*!*",Variable.local.sRet)
+	Gui.F_CSAT.txtSO.Text(V.Local.sRet(0))
+F.intrinsic.control.endif
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Browser_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Browser.End
+
+Program.Sub.Clear.Start
+F.Intrinsic.Control.SetErrorHandler("Clear_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'When called from Sales Order screen, only use order that is on screen, so only clear if not running program from that screen.
+F.Intrinsic.Control.If(V.Caller.Hook,<>,11910)
+	Gui.F_CSAT.txtSO.Enabled(True)
+	Gui.F_CSAT.cmdSO.Enabled(True)
+	Gui.F_CSAT.txtSO.Text("")
+F.Intrinsic.Control.EndIf
+
+Gui.F_CSAT.txtCSID.Text("")
+Gui.F_CSAT.mltxtComments.Text("")
+Gui.F_CSAT.cboCat.Text("")
+Gui.F_CSAT.cboRate.Text("")
+Gui.F_CSAT.mltxtComments.Enabled(True)
+Gui.F_CSAT.cboCat.Enabled(True)
+Gui.F_CSAT.cboRate.Enabled(True)
+Gui.F_CSAT.cmdSave.Enabled(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Clear_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Clear.End
+
+Program.Sub.Click_LVW.Start
+F.Intrinsic.Control.SetErrorHandler("Click_LVW_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sRate.Declare(String)
+
+Gui.F_CSAT..Enabled(False)
+
+F.Intrinsic.Control.If(V.Screen.F_CSAT!lvwSat.SelectedItemKey,<>,"")
+	Gui.F_CSAT.txtSO.Enabled(False)
+	Gui.F_CSAT.cboCat.Enabled(False)
+	Gui.F_CSAT.cboRate.Enabled(False)
+	Gui.F_CSAT.cmdSO.Enabled(False)
+	Gui.F_CSAT.cmdSave.Enabled(False)
+	Gui.F_CSAT.mltxtComments.Enabled(False)
+	V.Local.sRate.Set(V.Screen.F_CSAT!lvwSat.SelectedItemSubItem(5))
+	Gui.F_CSAT.txtCSID.Text(V.Screen.F_CSAT!lvwSat.SelectedItemKey)
+	Gui.F_CSAT.txtSO.Text(V.Screen.F_CSAT!lvwSat.SelectedItemSubItem(3))
+	Gui.F_CSAT.cboCat.Text(V.Screen.F_CSAT!lvwSat.SelectedItemSubItem(4))
+	Gui.F_CSAT.cboRate.Text(V.Local.sRate.Float)
+	Gui.F_CSAT.mltxtComments.Text(V.Screen.F_CSAT!lvwSat.SelectedItemSubItem(6))
+F.Intrinsic.Control.EndIf
+
+Gui.F_CSAT..Enabled(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Click_LVW_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Click_LVW.End
+
+program.sub.txtso_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("txtso_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSQL.Declare(String)
+
+F.Intrinsic.Control.If(V.Screen.F_CSAT!txtSO.Text,<>,"")
+	F.Intrinsic.String.Build("Select Order_No,Order_Suffix from V_Order_Header where CUSTOMER ='{0}' AND ORDER_NO = '{1}'",V.Global.sCustNo,V.Screen.F_CSAT!txtSO.Text,V.Local.sSQL)
+	F.ODBC.Connection!Con.OpenLocalRecordsetRO("rst",V.Local.sSQL)
+
+	F.Intrinsic.Control.If(V.ODBC.Con!rst.EOF,=,True)
+		F.Intrinsic.UI.Msgbox("You must select a valid Sales Order.")
+		Gui.F_CSAT.txtSO.Text("")
+		Gui.F_CSAT.txtSO.SetFocus
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtso_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3535_CRM_CSAT_CERT.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_csat_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.txtso_lostfocus.end
+
+Program.Sub.Comments.Start
+${$0$}$GCG_CRM_CSAT_CERT$}$ERIC$}$10/20/2015
+${$1$}$$}$$}$3$}$11560$}$Order Entry Populate Hook$}$10/20/2015 1:53:15 PM$}$Populate hook for the Order Entry Screen
+${$1$}$$}$$}$2$}$11910$}$Order Entry Script 1 Hook$}$10/20/2015 1:52:40 PM$}$Script 1 Button for the Order Entry Screen
+${$1$}$$}$$}$1$}$42900$}$CRM.NET-ENTRY$}$10/20/2015 1:46:13 PM$}$Populate hook for the CRM.NET
+${$1$}$$}$$}$0$}$42918$}$CRM.Net-GAB1$}$10/20/2015 1:39:04 PM$}$Script 1 Button on the CRM Screen
+${$2$}$$}$$}$0$}$4$}$GCG_3535_CRM_CSAT$}$10/20/2015 1:39:04 PM$}$CREATE TABLE "GCG_3535_CRM_CSAT"(
+ "CSID" IDENTITY DEFAULT '0',
+ "CUSTOMER" VARCHAR(7) CASE ,
+ "SALES_ORDER" VARCHAR(7) CASE ,
+ "RATING" NUMERIC(8,2),
+ "CATEGORY" VARCHAR(50) CASE ,
+ "CCOMMENTS" LONGVARCHAR CASE ,
+ "RATINGDT" DATETIME,
+ "GS_USER" VARCHAR(8) CASE ,
+ UNIQUE ("CSID"));
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Customer Satisfaction Survey from CRM. You will not be able to delete any reviews created for a customer. It is run from the Script 1 Button.
+${$4$}$0$}$$}$0$}$-1$}$BCC$}$10/20/2015 1:43:12 PM$}$Updated program to incorporate updated code such as changing String.Concat to String.Build.
+Sped up code. Added error handling. Changed how the program loads previous customer reviews. It will load all the data from the list into the corresponding locations. It will also now disable the ability to click add when you select a previous Customer Review. You must click clear before you can add any new reviews.
+Program.Sub.Comments.End
+
